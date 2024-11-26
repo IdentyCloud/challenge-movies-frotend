@@ -1,0 +1,140 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4">En cartelera</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+    @for (movie of $nowPlaying(); track movie) {
+    <div
+      [id]="'now-playing-' + movie.id"
+      class="border p-4 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+      (click)="handleMovieClick(movie.id)"
+    >
+      <img
+        [ngSrc]="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path"
+        [alt]="movie.title"
+        width="582"
+        height="327"
+        class="rounded-md object-cover"
+        placeholder="blur"
+        priority
+      />
+      <h2 class="text-lg font-semibold mt-5">{{ movie.title }}</h2>
+    </div>
+    }
+  </div>
+
+  <h1 class="text-2xl font-bold mb-4">Populares</h1>
+
+  <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+    @for (movie of $popular(); track movie) {
+    <div
+      [id]="'popular-' + movie.id"
+      class="border p-4 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+      (click)="handleMovieClick(movie.id)"
+    >
+      <img
+        [ngSrc]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+        [alt]="movie.title"
+        width="205"
+        height="307"
+        class="rounded-md object-cover"
+        placeholder="blur"
+        priority
+      />
+      <h2 class="text-lg font-semibold mt-5">{{ movie.title }}</h2>
+    </div>
+    }
+  </div>
+
+  @if (selectedMovieCredits && selectedMovieDetails) {
+  <div class="container mx-auto px-4 py-8">
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-3xl font-bold mb-2">{{ selectedMovieDetails.title }}</h1>
+      <p class="text-xl italic text-gray-600 mb-6">
+        {{ selectedMovieDetails.tagline }}
+      </p>
+
+      <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex flex-col space-y-4">
+          <p>
+            <strong>Descripción:</strong> {{ selectedMovieDetails.overview }}
+          </p>
+          <p>
+            <strong>Fecha de lanzamiento:</strong>
+            {{ selectedMovieDetails.release_date }}
+          </p>
+          <p>
+            <strong>Duración:</strong>
+            {{ selectedMovieDetails.runtime }} minutos
+          </p>
+        </div>
+      </div>
+    </div>
+
+    @if (selectedMovieCredits.cast.length > 0) {
+    <h2 class="text-2xl font-bold mb-8 mt-8 text-center">Elenco</h2>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    >
+      @for (cast of selectedMovieCredits.cast; track cast) {
+      <div class="flex flex-col items-center">
+        <div
+          [class.hidden]="cast.profile_path"
+          class="flex items-center justify-center bg-gray-200 text-gray-500 text-sm font-medium w-[185px] h-[278px] rounded-md mb-2"
+        >
+          Sin Imagen
+        </div>
+        <img
+          [ngSrc]="'https://image.tmdb.org/t/p/w500' + cast.profile_path"
+          [alt]="cast.name"
+          width="185"
+          height="278"
+          class="rounded-md object-cover mb-2"
+          [class.hidden]="!cast.profile_path"
+          placeholder="blur"
+          priority
+        />
+
+        <h2 class="text-lg font-semibold">{{ cast.name }}</h2>
+        <p class="text-sm text-gray-500">{{ cast.character }}</p>
+      </div>
+      }
+    </div>
+
+    } @if (selectedMovieCredits.crew.length > 0) {
+    <h2 class="text-2xl font-bold mb-8 mt-8 text-center">
+      Equipo de Producción
+    </h2>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    >
+      @for (crew of selectedMovieCredits.crew; track crew) {
+      <div class="flex flex-col items-center">
+        <div
+          [class.hidden]="crew.profile_path"
+          class="flex items-center justify-center bg-gray-200 text-gray-500 text-sm font-medium w-[185px] h-[278px] rounded-md mb-2"
+        >
+          Sin Imagen
+        </div>
+        <img
+          [ngSrc]="'https://image.tmdb.org/t/p/w500' + crew.profile_path"
+          [alt]="crew.name"
+          width="185"
+          height="278"
+          class="rounded-md object-cover mb-2"
+          [class.hidden]="!crew.profile_path"
+          placeholder="blur"
+          priority
+        />
+
+        <h2 class="text-lg font-semibold text-center mb-2">
+          {{ crew.name }}
+        </h2>
+        <p class="text-sm text-gray-500 mb-1">{{ crew.department }}</p>
+        <p class="text-sm text-gray-400 italic">{{ crew.job }}</p>
+      </div>
+      }
+    </div>
+    }
+  </div>
+  }
+</div>

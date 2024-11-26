@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "86ffee5b-a47a-4970-bc67-75f6df6ada95",
+		"name": "Challenge Movies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16379322"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "[Auth] Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@email.com\",\n    \"password\": \"wd5RauJOqvXQ6Gt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Auth] Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@email.com\",\n    \"password\": \"wd5RauJOqvXQ6Gt\",\n    \"birthdate\": \"1990-01-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/auth/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "[Movies] Get Now Playing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/movies/now_playing?page=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"movies",
+								"now_playing"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Movies] Get Popular Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/movies/popular",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"movies",
+								"popular"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Movies] Get Movie Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/movie/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"movie",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "912649"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Movies] Get Movie Credits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/movie/:id/credits",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"movie",
+								":id",
+								"credits"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "912649"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

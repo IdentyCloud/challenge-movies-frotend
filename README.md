@@ -1,59 +1,30 @@
-# MovieChallenge
+# MovieChallenge Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.1.
+## Nombre completo
 
-## Development server
+Ezequiel Antonio Nuñez
 
-To start a local development server, run:
+## Respuestas de las preguntas
 
-```bash
-ng serve
-```
+#### Pregunta: Como has visto, la llamada que has implementado para obtener las películas que están en cartelera puede recibir un parámetro “page”. No es objeto de esta prueba implementar paginación, pero si tuvieses que hacerlo, ¿puedes explicar cómo lo harías en la aplicación y en el backend?
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Respuesta: En primera instacia agregaria un parametro `limit` adicional al parámetro `page` que ya tenemos implementado, de esta manera se puede controlar cuántos resultados se devuelven por página, luego agregaria los adicionales como `currentPage`, `totalPages` y `totalResults`, que serían utilizados para paginar.
 
-## Code scaffolding
+#### Pregunta:Si tuvieses que manejar un Array con 7 millones de películas, y necesitas eliminar aquellas en las que el atributo vote_average no supera el valor 6, ¿cómo lo harías? Justifica tu respuesta teniendo en cuenta el rendimiento
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Respuesta: Se podria utilizar filter pero desde mi experiencia lo ideal seria que backend haga los ajustes necesarios para recibir la informacion por parametros para retornar solo los elementos necesarios, por otra parte garantizamos mantener la informacion de url ante un refresco de navegación o compartir links mediante email, etc.
 
-```bash
-ng generate component component-name
-```
+## Librerías adicionales
+- **Tailwind CSS**: Framework de CSS para mejorar el diseños responsivo y facilitar el desarrollo a nivel frontal.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Documentación a aportar
+- **JSON**: Colección de Postman que incluye todas las rutas de la API y ejemplos de solicitudes para interactuar con la base de datos de películas, el nombre del archivo es: Challenge Movies.postman_collection.json
 
-```bash
-ng generate --help
-```
+## Consideraciones a tener en cuenta:
+Por motivos personales y de conectividad, no he podido completar los siguientes puntos:
+- Agregar un swiper para armar un carrousel.
+- Mejorar el diseño a nivel de frontend.
+- Agregar Formularios reactivos para tener validaciones y reset de formularios con mayor performance.
+- Agregar un toast o notificaciones cuando finaliza el proceso de registro.
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Pido disculpas por estos faltantes, pero la verdad es que fue un challenge medio atípico para mí.
